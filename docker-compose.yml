@@ -1,0 +1,16 @@
+version: "3"
+services:
+  nodeapp:
+    build: app/
+    ports: 
+      - "8000:8000"
+    container_name: nodeapp
+  nginx:
+    build: nginx/
+    ports:
+     - "80:80"
+    volumes:
+      - nginx/files/:/etc/nginx/
+    container_name: nginxsvc
+    depends_on:
+       - nodeapp
